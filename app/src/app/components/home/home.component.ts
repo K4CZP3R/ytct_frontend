@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiGenericResponse } from 'src/app/interfaces/api-generic-response';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  googleLogin() {
+    this.auth.login().then((url: string) => {
+      console.log("Will redirect user to: ", url)
+      window.location.href = url;
+    })
+      .catch((error: ApiGenericResponse) => {
+        console.error(error);
+      })
+
   }
 
 }
