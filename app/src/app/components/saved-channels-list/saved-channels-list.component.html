@@ -1,0 +1,15 @@
+<div class="container center">
+    <p *ngIf="savedChannels.length == 0">
+        You did not added any channel yet.
+        You can do it here.
+        <br>
+        <a class="waves-effect waves-light btn" routerLink="/search">Channel search</a>
+    </p>
+
+    <p>Saved channels:</p>
+    <a class="waves-effect waves-light btn" (click)="clearList()">Clear</a>
+    <a class="waves-effect waves-light btn" (click)="generateTimeline()">Make timeline</a>
+    <div *ngFor="let channel of savedChannels">
+        <app-channel-card [channelObj]="channel"></app-channel-card>
+    </div>
+</div>

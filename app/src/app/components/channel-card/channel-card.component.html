@@ -6,7 +6,8 @@
         <p>{{channelObj.description}}</p>
     </div>
     <div class="card-action">
-        <a href="#">Add to the list</a>
-        <a href="#">View videos</a>
+        <a *ngIf="!isOnTheList" (click)="addToTheList()">Add to the list</a>
+        <a *ngIf="isOnTheList" (click)="removeFromTheList()">Remove from the list</a>
+        <a routerLink="/channel/{{channelObj.cid}}">View videos</a>
     </div>
 </div>

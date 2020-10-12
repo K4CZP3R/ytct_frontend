@@ -10,6 +10,10 @@ import { GoogleCallbackComponent } from './components/google-callback/google-cal
 import { ChannelSearchComponent } from './components/channel-search/channel-search.component';
 import { FormsModule } from '@angular/forms';
 import { ChannelCardComponent } from './components/channel-card/channel-card.component';
+import { SavedChannelsListComponent } from './components/saved-channels-list/saved-channels-list.component';
+import { VideoCardComponent } from './components/video-card/video-card.component';
+import { ChannelInfoComponent } from './components/channel-info/channel-info.component';
+import { TimelineComponent } from './components/timeline/timeline.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { ChannelCardComponent } from './components/channel-card/channel-card.com
     HeaderComponent,
     GoogleCallbackComponent,
     ChannelSearchComponent,
-    ChannelCardComponent
+    ChannelCardComponent,
+    SavedChannelsListComponent,
+    VideoCardComponent,
+    ChannelInfoComponent,
+    TimelineComponent
   ],
   imports: [
     BrowserModule,

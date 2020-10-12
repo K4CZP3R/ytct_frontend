@@ -1,8 +1,11 @@
 <div class="container center">
     <h1>Channel search</h1>
+    <p>Click here to view saved channels:
+        <a class="waves-effect waves-light btn" routerLink="/saved">Saved channels</a>
+    </p>
     <input [ngModel]='model' (ngModelChange)='changed($event)' type="text" placeholder="Enter channel name...">
-
-    <div class="channel-container" *ngFor="let channel of foundChannels">
+    <p>You have added {{amount_channels}} channels already.</p>
+    <div *ngFor="let channel of foundChannels">
         <app-channel-card [channelObj]="channel"></app-channel-card>
     </div>
 </div>
