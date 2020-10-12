@@ -1,0 +1,8 @@
+<div class="container center">
+    <h1>Channel search</h1>
+    <input [ngModel]='model' (ngModelChange)='changed($event)' type="text" placeholder="Enter channel name...">
+
+    <div class="channel-container" *ngFor="let channel of foundChannels">
+        <app-channel-card [channelObj]="channel"></app-channel-card>
+    </div>
+</div>

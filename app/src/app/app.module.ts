@@ -7,18 +7,24 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GoogleCallbackComponent } from './components/google-callback/google-callback.component';
+import { ChannelSearchComponent } from './components/channel-search/channel-search.component';
+import { FormsModule } from '@angular/forms';
+import { ChannelCardComponent } from './components/channel-card/channel-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    GoogleCallbackComponent
+    GoogleCallbackComponent,
+    ChannelSearchComponent,
+    ChannelCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
