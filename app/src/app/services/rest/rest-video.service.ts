@@ -1,23 +1,18 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { YtChannel } from 'src/app/interfaces/yt-channel';
+import { YtVideo } from 'src/app/interfaces/yt-video';
 import { HttpRequestService } from './http-request.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RestSearchService {
+export class RestVideoService {
 
   constructor(private httpReq: HttpRequestService) { }
 
-  channel(creds: string, query: string) {
-    return this.httpReq.getWithHeaders<YtChannel[]>(`/search/channel?query=${query}`,
-      new HttpHeaders({
-        "creds": creds
-      }))
-  }
-  channel_cid(creds: string, cid: string) {
-    return this.httpReq.getWithHeaders<YtChannel>(`/search/channel/${cid}`,
+  channel(channel_id: string, creds: string) {
+    return this.httpReq.getWithHeaders<YtVideo[]>(`/videos/channel/${channel_id}`,
       new HttpHeaders({
         "creds": creds
       }))

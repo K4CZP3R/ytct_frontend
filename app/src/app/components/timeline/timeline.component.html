@@ -1,0 +1,7 @@
+<div class="container center">
+    Share this timeline: <code>{{currentUrl}}</code>
+    <div *ngFor="let v of videos">
+        <app-video-card [videoObj]="v"></app-video-card>
+        
+    </div>
+</div>

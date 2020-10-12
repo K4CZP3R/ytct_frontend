@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ApiGenericResponse } from 'src/app/interfaces/api-generic-response';
 import { YtChannel } from 'src/app/interfaces/yt-channel';
+import { ChannelSelectorService } from 'src/app/services/channel-selector.service';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
@@ -16,8 +17,9 @@ export class ChannelSearchComponent implements OnInit {
   modelChanged: Subject<string> = new Subject<string>();
 
   foundChannels: YtChannel[];
+  amount_channels: number = 0;
 
-  constructor(private search: SearchService) {
+  constructor(private search: SearchService, private channelSelector: ChannelSelectorService) {
     this.modelChanged.pipe(
       debounceTime(300),
       distinctUntilChanged(),
@@ -29,6 +31,9 @@ export class ChannelSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.channelSelector.savedChannels$.subscribe((newVal) => {
+      this.amount_channels = newVal.length;
+    })
     this.foundChannels = [];
   }
 

@@ -1,0 +1,15 @@
+<div class="container center">
+
+    <div *ngIf="channel">
+        <p>{{channel.name}}</p>
+        <p>{{channel.description}}</p>
+    </div>
+
+    <div *ngIf="videos">
+        <p>Last {{videos.length}} videos of this user:</p>
+
+        <div *ngFor="let vid of videos">
+            <app-video-card [videoObj]="vid"></app-video-card>
+        </div>
+    </div>
+</div>
