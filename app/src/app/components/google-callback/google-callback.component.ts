@@ -22,7 +22,14 @@ export class GoogleCallbackComponent implements OnInit {
 
     this.auth.callback(this.googleCode).then((data: CredentialsDict) => {
       this.auth.setGoogleCredentials(data);
-      this.router.navigate(["/"])
+      let rTo = localStorage.getItem('redirect_to');
+      if (rTo !== null) {
+        window.location.href = rTo;
+        localStorage.removeItem('redirect_to')
+      }
+      else {
+        this.router.navigate(["/"])
+      }
     })
       .catch((error: ApiGenericResponse) => {
         console.error(error)

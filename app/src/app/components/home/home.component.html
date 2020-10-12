@@ -2,7 +2,8 @@
     <h1>Welcome to YTCT</h1>
     <p>Too many subscribed channels and you watch only some of them daily?
         Add them to timeline on this website!</p>
-
-    <b>You are not logged in! To use this site, you will need to login with your Google Account.</b><br>
-    <a class="waves-effect waves-light btn" (click)="googleLogin()">Login using Google</a>
+    <div *ngIf="!isAuthenticated">
+        <b>You are not logged in! To use this site, you will need to login with your Google Account.</b><br>
+        <a class="waves-effect waves-light btn" (click)="googleLogin()">Login using Google</a>
+    </div>
 </div>

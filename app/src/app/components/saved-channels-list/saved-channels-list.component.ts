@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { time } from 'console';
 import { YtChannel } from 'src/app/interfaces/yt-channel';
 import { ChannelSelectorService } from 'src/app/services/channel-selector.service';
 

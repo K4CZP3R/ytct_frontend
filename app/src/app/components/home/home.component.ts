@@ -10,10 +10,13 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
+  isAuthenticated: boolean = false;
   constructor(private auth: AuthService,
     private router: Router) { }
 
+
   ngOnInit(): void {
+    this.isAuthenticated = this.auth.isAuthenticated();
   }
 
   googleLogin() {

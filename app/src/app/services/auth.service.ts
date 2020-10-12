@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { ApiGenericResponse } from '../interfaces/api-generic-response';
 import { CredentialsDict } from '../interfaces/credentials-dict';
 import { RestAuthService } from './rest/rest-auth.service';
@@ -9,7 +10,13 @@ import { RestAuthService } from './rest/rest-auth.service';
 })
 export class AuthService {
 
-  constructor(private restAuth: RestAuthService) { }
+  constructor(private restAuth: RestAuthService) { 
+    this.isAuthenticatedBs.next(this.isAuthenticated());
+  }
+
+  private isAuthenticatedBs = new BehaviorSubject<boolean>(false);
+  readonly isAuthenticatedBs$ = this.isAuthenticatedBs.asObservable();
+
   callback(code: string) {
     return new Promise((resolve, reject) => {
       this.restAuth.callback(code)
@@ -58,6 +65,7 @@ export class AuthService {
   }
 
   setGoogleCredentials(googleCreds: CredentialsDict) {
+    this.isAuthenticatedBs.next(true);
     localStorage.setItem("creds", JSON.stringify(googleCreds));
   }
 
@@ -67,7 +75,8 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     let creds = this.getGoogleCredentials();
-    if (creds === undefined) {
+    console.log("creds", creds)
+    if (creds === undefined || creds === null) {
       return false;
     }
 

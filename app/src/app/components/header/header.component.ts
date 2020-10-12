@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import * as M from 'materialize-css'
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +9,21 @@ import * as M from 'materialize-css'
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
+
+  isAuthenticated: boolean = false;
 
   ngOnInit(): void {
+    this.auth.isAuthenticatedBs$.subscribe((state) =>{
+      this.isAuthenticated = state
+    })
+
   }
   ngAfterViewInit(): void {
     M.AutoInit();
     let elems = document.querySelectorAll('.sidenav')
     let options = {};
-    let instances = M.Sidenav.init(elems, options);
+    M.Sidenav.init(elems, options);
   }
 
 }
