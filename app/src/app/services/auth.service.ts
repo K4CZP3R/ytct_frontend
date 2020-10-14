@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ApiGenericResponse } from '../interfaces/api-generic-response';
 import { CredentialsDict } from '../interfaces/credentials-dict';
@@ -10,7 +11,8 @@ import { RestAuthService } from './rest/rest-auth.service';
 })
 export class AuthService {
 
-  constructor(private restAuth: RestAuthService) { 
+  constructor(private restAuth: RestAuthService,
+    private router: Router) {
     this.isAuthenticatedBs.next(this.isAuthenticated());
   }
 
@@ -69,13 +71,18 @@ export class AuthService {
     localStorage.setItem("creds", JSON.stringify(googleCreds));
   }
 
+  resetGoogleCredentials() {
+    this.isAuthenticatedBs.next(false);
+    localStorage.removeItem("creds");
+    this.router.navigate([""])
+  }
+
   getGoogleCredentials(): string {
     return localStorage.getItem("creds")
   }
 
   isAuthenticated(): boolean {
     let creds = this.getGoogleCredentials();
-    console.log("creds", creds)
     if (creds === undefined || creds === null) {
       return false;
     }

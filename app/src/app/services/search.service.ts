@@ -27,6 +27,7 @@ export class SearchService {
               message: error.status !== 0 ? error.error.message : error.message,
               status: error.status !== 0 ? error.error.status : error.statusText
             }
+
             reject(apiResp)
           }
         )
@@ -44,6 +45,9 @@ export class SearchService {
               success: false,
               message: error.status !== 0 ? error.error.message : error.message,
               status: error.status !== 0 ? error.error.status : error.statusText
+            }
+            if (error.status === 401) {
+              this.auth.resetGoogleCredentials();
             }
             reject(apiResp)
           }

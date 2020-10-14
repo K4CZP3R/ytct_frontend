@@ -14,6 +14,7 @@ export class AuthGuardService implements CanActivate{
     console.log("Checking!")
     if(!this.auth.isAuthenticated()){
       localStorage.setItem('redirect_to', window.location.href);
+      window.location.href = ""
       this.router.navigate([''])
       return false;
     }
