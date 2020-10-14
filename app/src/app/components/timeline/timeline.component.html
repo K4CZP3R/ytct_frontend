@@ -1,7 +1,24 @@
 <div class="container center">
     Share this timeline: <code>{{currentUrl}}</code>
-    <div *ngFor="let v of videos">
-        <app-video-card [videoObj]="v"></app-video-card>
-        
-    </div>
+
+    <table class="responsive-table highlight centered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Channel</th>
+                <th>Date</th>
+                <th>Link</th>
+                <th>Thumbnail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let v of videos">
+                <td>{{v.title}}</td>
+                <td>{{v.channel_name}}</td>
+                <td>{{v.date}}</td>
+                <td><a href="{{v.url}}">Click here</a></td>
+                <td><img src="{{v.thumbnail}}" alt="Thumbnail of {{v.title}}"/></td>
+            </tr>
+        </tbody>
+    </table>
 </div>

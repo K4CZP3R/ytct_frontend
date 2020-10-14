@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: "search", component: ChannelSearchComponent, canActivate: [AuthGuardService] },
   { path: "saved", component: SavedChannelsListComponent, canActivate: [AuthGuardService] },
   { path: "channel/:cid", component: ChannelInfoComponent, canActivate: [AuthGuardService] },
-  { path: "timeline", component: TimelineComponent, canActivate: [AuthGuardService] }
+  { path: "timeline", component: TimelineComponent, canActivate: [AuthGuardService] },
+  { path: "timeline/:ids", component: TimelineComponent, canActivate: [AuthGuardService]}
 ];
 
 @NgModule({
