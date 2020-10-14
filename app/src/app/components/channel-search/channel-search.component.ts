@@ -4,6 +4,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ApiGenericResponse } from 'src/app/interfaces/api-generic-response';
 import { YtChannel } from 'src/app/interfaces/yt-channel';
 import { ChannelSelectorService } from 'src/app/services/channel-selector.service';
+import { ModalService } from 'src/app/services/modal.service';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
@@ -19,7 +20,9 @@ export class ChannelSearchComponent implements OnInit {
   foundChannels: YtChannel[];
   amount_channels: number = 0;
 
-  constructor(private search: SearchService, private channelSelector: ChannelSelectorService) {
+  constructor(private search: SearchService,
+    private channelSelector: ChannelSelectorService,
+    private modal: ModalService) {
     this.modelChanged.pipe(
       debounceTime(300),
       distinctUntilChanged(),
@@ -49,6 +52,7 @@ export class ChannelSearchComponent implements OnInit {
       }
     )
       .catch((error: ApiGenericResponse) => {
+        this.modal.showModal("Something went wrong!", error.message, "searcherror")
         console.error(error)
       })
   }

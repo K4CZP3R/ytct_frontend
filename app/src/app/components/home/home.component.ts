@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiGenericResponse } from 'src/app/interfaces/api-generic-response';
 import { AuthService } from 'src/app/services/auth.service';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ export class HomeComponent implements OnInit {
 
   isAuthenticated: boolean = false;
   constructor(private auth: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private modal: ModalService) { }
 
 
   ngOnInit(): void {
@@ -25,6 +27,7 @@ export class HomeComponent implements OnInit {
       window.location.href = url;
     })
       .catch((error: ApiGenericResponse) => {
+        this.modal.showModal("Something went wrong!", error.message, "googleLoginError");
         console.error(error);
       })
 
