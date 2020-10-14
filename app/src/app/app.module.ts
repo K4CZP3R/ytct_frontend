@@ -14,6 +14,8 @@ import { SavedChannelsListComponent } from './components/saved-channels-list/sav
 import { VideoCardComponent } from './components/video-card/video-card.component';
 import { ChannelInfoComponent } from './components/channel-info/channel-info.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { TimelineComponent } from './components/timeline/timeline.component';
     SavedChannelsListComponent,
     VideoCardComponent,
     ChannelInfoComponent,
-    TimelineComponent
+    TimelineComponent,
+    ModalComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
