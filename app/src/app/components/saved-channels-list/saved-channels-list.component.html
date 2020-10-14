@@ -8,7 +8,7 @@
 
     <p>Saved channels:</p>
     <a class="waves-effect waves-light btn" (click)="clearList()">Clear</a>
-    <a class="waves-effect waves-light btn" (click)="generateTimeline()">Make timeline</a>
+    <a *ngIf="timelineAvailable" class="waves-effect waves-light btn" (click)="generateTimeline()">Make timeline</a>
     <div *ngFor="let channel of savedChannels">
         <app-channel-card [channelObj]="channel"></app-channel-card>
     </div>

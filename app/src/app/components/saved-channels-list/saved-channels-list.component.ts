@@ -14,9 +14,14 @@ export class SavedChannelsListComponent implements OnInit {
     private router: Router) { }
 
   savedChannels: YtChannel[] = [];
+  timelineAvailable: boolean = false;
   ngOnInit(): void {
     this.channelSelector.savedChannels$.subscribe((newList) => {
       this.savedChannels = newList;
+      if(this.savedChannels.length !== 0)
+      {
+        this.timelineAvailable = true;
+      }
     })
   }
 
