@@ -46,7 +46,7 @@ export class SearchService {
               message: error.status !== 0 ? error.error.message : error.message,
               status: error.status !== 0 ? error.error.status : error.statusText
             }
-            if (error.status === 401) {
+            if (error.status === 401 || error.status === 422) {
               this.auth.resetGoogleCredentials();
             }
             reject(apiResp)
